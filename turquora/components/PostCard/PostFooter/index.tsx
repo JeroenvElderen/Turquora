@@ -1,11 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  VoteButton,
-  CommentButton,
-  ShareButton,
-} from "../PostActions";
-
+import { VoteButton, CommentButton, ShareButton} from "../PostActions";
 type Props = {
   score: number;
   commentsCount?: number;
@@ -22,7 +17,7 @@ export default function PostFooter({
   return (
     <View style={styles.container}>
       {/* Votes */}
-      <VoteButton score={score} />
+      <VoteButton postId={postId} score={score} />
 
       {/* Comments */}
       <CommentButton

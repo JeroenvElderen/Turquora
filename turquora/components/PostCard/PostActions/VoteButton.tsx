@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
+import ensureUser from "./ensureUser";
 import { supabase } from "@/lib/supabase";
 
 interface Props {
@@ -12,11 +13,7 @@ export default function VoteButton({ postId, score }: Props) {
   const [vote, setVote] = useState<"up" | "down" | null>(null);
 
   const handleUpvote = async () => {
-    let { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      const { data } = await supabase.auth.signInAnonymously();
-      user = data.user ?? null;
-    }
+   const user = await ensureUser();
     if (!user) return;
 
     if (vote === "up") {
@@ -36,11 +33,7 @@ export default function VoteButton({ postId, score }: Props) {
   };
 
   const handleDownvote = async () => {
-    let { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      const { data } = await supabase.auth.signInAnonymously();
-      user = data.user ?? null;
-    }
+   const user = await ensureUser();
     if (!user) return;
 
     if (vote === "down") {
