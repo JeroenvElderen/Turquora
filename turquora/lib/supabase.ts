@@ -1,15 +1,20 @@
+// lib/supabase.ts
 import "react-native-url-polyfill/auto";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createClient } from "@supabase/supabase-js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native";
 
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
-const supabaseAnon = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
 
-export const supabase = createClient(supabaseUrl, supabaseAnon, {
+// Alleen native platforms AsyncStorage laten gebruiken
+const storage = Platform.OS === "web" ? undefined : AsyncStorage;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    storage: AsyncStorage,
-    autoRefreshToken: true,
+    storage,
     persistSession: true,
-    detectSessionInUrl: false
-  }
+    autoRefreshToken: true,
+    detectSessionInUrl: false,
+  },
 });
