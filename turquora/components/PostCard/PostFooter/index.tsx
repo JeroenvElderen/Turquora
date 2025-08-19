@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome, Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
   score: number;
@@ -12,28 +12,28 @@ export default function PostFooter({ score, commentsCount = 0 }: Props) {
       {/* Votes */}
       <View style={styles.actionGroup}>
         <TouchableOpacity>
-          <FontAwesome name="arrow-up" size={14} color="#d7dadc" />
+          <Ionicons name="arrow-up-outline" size={14} color="#d7dadc" />
         </TouchableOpacity>
         <Text style={styles.actionText}>{score}</Text>
         <TouchableOpacity>
-          <FontAwesome name="arrow-down" size={14} color="#d7dadc" />
+          <Ionicons name="arrow-down-outline" size={14} color="#d7dadc" />
         </TouchableOpacity>
       </View>
 
       {/* Comments */}
       <View style={styles.actionGroup}>
-        <Feather name="message-circle" size={14} color="#d7dadc" />
+        <Ionicons name="chatbubble-outline" size={14} color="#d7dadc" />
         <Text style={styles.actionText}>{commentsCount}</Text>
       </View>
 
       {/* Award */}
       <View style={styles.actionGroup}>
-        <Feather name="award" size={14} color="#d7dadc" />
+        <Ionicons name="ribbon-outline" size={14} color="#d7dadc" />
       </View>
 
       {/* Share */}
       <View style={styles.actionGroup}>
-        <Feather name="share" size={14} color="#d7dadc" />
+        <Ionicons name="share-outline" size={14} color="#d7dadc" />
         <Text style={styles.actionText}>Share</Text>
       </View>
     </View>

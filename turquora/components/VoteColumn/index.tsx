@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
   score: number;
@@ -9,11 +9,11 @@ export default function VoteColumn({ score }: Props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity>
-        <FontAwesome name="arrow-up" size={20} color="#fff" />
+        <Ionicons name="arrow-up" size={20} color="#fff" />
       </TouchableOpacity>
       <Text style={styles.score}>{score}</Text>
       <TouchableOpacity>
-        <FontAwesome name="arrow-down" size={20} color="#fff" />
+        <Ionicons name="arrow-down" size={20} color="#fff" />
       </TouchableOpacity>
     </View>
   );
