@@ -107,6 +107,7 @@ export default function FeedScreen() {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <PostCard
+              id={item.id}
               community={item.communities?.name ?? "unknown"}
               author={item.profiles?.handle ?? "unknown"}
               avatarUrl={item.profiles?.avatar_url ?? null}

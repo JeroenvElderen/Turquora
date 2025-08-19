@@ -3,6 +3,7 @@ import PostHeader from "./PostHeader";
 import PostFooter from "./PostFooter";
 
 type Props = {
+  id: string;
   community: string;
   author: string;
   title: string;
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export default function PostCard({
+  id,
   community,
   author,
   title,
@@ -46,7 +48,7 @@ export default function PostCard({
       ) : null}
 
       {/* Footer (votes + comments + award + share) */}
-      <PostFooter score={score} commentsCount={commentsCount} />
+      <PostFooter score={score} commentsCount={commentsCount} postId={id} postUrl={url} />
     </View>
   );
 }

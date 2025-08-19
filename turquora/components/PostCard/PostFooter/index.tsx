@@ -1,30 +1,33 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  VoteButton,
+  CommentButton,
+  ShareButton,
+} from "../PostActions";
 
 type Props = {
   score: number;
   commentsCount?: number;
+  postId: string;
+  postUrl?: string | null;
 };
 
-export default function PostFooter({ score, commentsCount = 0 }: Props) {
+export default function PostFooter({ 
+  score, 
+  commentsCount = 0, 
+  postId,
+  postUrl = "",
+}: Props) {
   return (
     <View style={styles.container}>
       {/* Votes */}
-      <View style={styles.actionGroup}>
-        <TouchableOpacity>
-          <Ionicons name="arrow-up-outline" size={14} color="#d7dadc" />
-        </TouchableOpacity>
-        <Text style={styles.actionText}>{score}</Text>
-        <TouchableOpacity>
-          <Ionicons name="arrow-down-outline" size={14} color="#d7dadc" />
-        </TouchableOpacity>
-      </View>
+      <VoteButton score={score} />
 
       {/* Comments */}
-      <View style={styles.actionGroup}>
-        <Ionicons name="chatbubble-outline" size={14} color="#d7dadc" />
-        <Text style={styles.actionText}>{commentsCount}</Text>
-      </View>
+      <CommentButton
+        postId={postId}
+        commentsCount={commentsCount} />
 
       {/* Award */}
       <View style={styles.actionGroup}>
@@ -32,10 +35,7 @@ export default function PostFooter({ score, commentsCount = 0 }: Props) {
       </View>
 
       {/* Share */}
-      <View style={styles.actionGroup}>
-        <Ionicons name="share-outline" size={14} color="#d7dadc" />
-        <Text style={styles.actionText}>Share</Text>
-      </View>
+      <ShareButton postUrl={postUrl} />
     </View>
   );
 }
